@@ -65,11 +65,12 @@ class HiveLogger:
             self._write_log(entry)
 
     def log_final_aggregation(self, result: str, total_tokens: int):
+        result_str = str(result) if result else "N/A"
         entry = {
             "timestamp": datetime.now().isoformat(),
             "type": "final_result",
             "total_tokens": total_tokens,
-            "result_preview": result[:200],
+            "result_preview": result_str[:200],
         }
         self._write_log(entry)
 

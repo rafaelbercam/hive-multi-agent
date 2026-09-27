@@ -5,10 +5,13 @@ Demonstra o padrão Queen & Workers com 3 queries complexas
 
 import asyncio
 import os
+from dotenv import load_dotenv
 from src.config import config
 from src.agents.queen import QueenAgent
 from src.workers import RAGWorker, MathWorker, CodeWorker, QAWorker
 from src.utils.logger import HiveLogger
+
+load_dotenv()
 
 async def run_hive_query(queen: QueenAgent, query: str) -> str:
     """Executa uma query através do HIVE"""

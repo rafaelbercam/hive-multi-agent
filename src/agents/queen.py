@@ -52,7 +52,7 @@ Retorne um JSON array com as subtarefas."""
 
         message = self.client.messages.create(
             model=self.model,
-            max_tokens=1024,
+            max_tokens=2048,
             system=system_prompt,
             messages=[
                 {
@@ -62,11 +62,26 @@ Retorne um JSON array com as subtarefas."""
             ]
         )
 
-        response_text = message.content[0].text
+        response_text = None
+        if message.content:
+            for block in message.content:
+                block_type = getattr(block, 'type', None)
+                if block_type == 'text' and hasattr(block, 'text') and block.text:
+                    response_text = block.text
+                    break
+
+        if not response_text:
+            print(f"❌ Resposta vazia da API ao decompor (stop_reason: {message.stop_reason})")
+            return []
 
         try:
             json_start = response_text.find("[")
             json_end = response_text.rfind("]") + 1
+
+            if json_start == -1 or json_end == 0:
+                print(f"❌ Nenhum JSON encontrado na resposta")
+                return []
+
             json_str = response_text[json_start:json_end]
             tasks_data = json.loads(json_str)
 
@@ -75,7 +90,7 @@ Retorne um JSON array com as subtarefas."""
 
             return tasks
         except Exception as e:
-            print(f"Erro ao parsear decomposição: {e}")
+            print(f"❌ Erro ao parsear decomposição: {e}")
             return []
 
     async def execute_workers_parallel(self, tasks: List[DecomposedTask]) -> Dict[str, TaskResponse]:
@@ -134,7 +149,7 @@ Integre os insights de cada worker de forma lógica e hierárquica."""
 
         message = self.client.messages.create(
             model=self.model,
-            max_tokens=2048,
+            max_tokens=4096,
             system=system_prompt,
             messages=[
                 {
@@ -149,7 +164,14 @@ Sintetize uma resposta final que integre todos esses resultados de forma coerent
             ]
         )
 
-        final_result = message.content[0].text
+        final_result = "Erro ao agregar resultados"
+        if message.content:
+            for block in message.content:
+                block_type = getattr(block, 'type', None)
+                if block_type == 'text' and hasattr(block, 'text') and block.text:
+                    final_result = block.text
+                    break
+
         total_tokens = message.usage.input_tokens + message.usage.output_tokens
 
         for response in worker_results.values():

@@ -4,9 +4,12 @@ Exemplo simples de uso do HIVE - Teste rápido
 
 import asyncio
 import os
+from dotenv import load_dotenv
 from src.agents.queen import QueenAgent
 from src.workers import RAGWorker, MathWorker, CodeWorker, QAWorker
 from src.utils.logger import HiveLogger
+
+load_dotenv()
 
 async def simple_example():
     api_key = os.getenv("ANTHROPIC_API_KEY")

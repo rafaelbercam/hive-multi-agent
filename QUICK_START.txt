@@ -1,0 +1,202 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    🐝 HIVE MULTI-AGENT - QUICK START                        ║
+║              Guia Rápido para Executar e Validar o Projeto                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─ PASSO 1: PREPARAÇÃO (5 min) ─────────────────────────────────────────────┐
+│                                                                              │
+│ [ ] 1. Abrir terminal                                                        │
+│                                                                              │
+│ [ ] 2. Ir para o diretório                                                  │
+│       $ cd /Users/rafaelbercam/Projects/hive-multi-agent                    │
+│                                                                              │
+│ [ ] 3. Criar ambiente virtual                                               │
+│       $ python -m venv venv                                                 │
+│       $ source venv/bin/activate                                            │
+│                                                                              │
+│ [ ] 4. Instalar dependências                                                │
+│       $ pip install -r requirements.txt                                     │
+│                                                                              │
+│ [ ] 5. Configurar API Key                                                   │
+│       $ export ANTHROPIC_API_KEY='sk-ant-xxxxxxxxxxxxx'                     │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PASSO 2: TESTE RÁPIDO (2-3 min) ────────────────────────────────────────┐
+│                                                                              │
+│ [ ] Executar exemplo simples                                                │
+│       $ python example_simple.py                                            │
+│                                                                              │
+│     ✅ Validar:                                                             │
+│        ✓ Mostra "🐝 HIVE Queen iniciando..."                                │
+│        ✓ Exibe decomposição em 4 subtarefas                                 │
+│        ✓ Mostra "Executando workers em paralelo"                            │
+│        ✓ Exibe "RESULTADO FINAL:"                                           │
+│        ✓ Mostra "HIVE EXECUTION SUMMARY"                                    │
+│        ✓ Tempo entre 6-15s                                                  │
+│        ✓ Tokens > 1000                                                      │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PASSO 3: TESTE COMPLETO (5-10 min) ──────────────────────────────────────┐
+│                                                                              │
+│ [ ] Executar exemplo completo (3 queries)                                   │
+│       $ python main.py                                                      │
+│                                                                              │
+│     ✅ Validar:                                                             │
+│        ✓ Processa QUERY #1, #2, #3 com sucesso                             │
+│        ✓ Cada query tem decomposição diferente                              │
+│        ✓ Tempos aumentam: 7s → 8s → 12s (aproximadamente)                  │
+│        ✓ Todos os workers: status "success"                                 │
+│        ✓ Logs criados em logs/ (3 arquivos)                                 │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PASSO 4: BENCHMARK (3-5 min) ────────────────────────────────────────────┐
+│                                                                              │
+│ [ ] Comparar HIVE vs Abordagem Tradicional                                  │
+│       $ python benchmark.py                                                 │
+│                                                                              │
+│     ✅ Validar:                                                             │
+│        ✓ Exibe tabela comparativa                                           │
+│        ✓ HIVE é ~50% mais rápido                                            │
+│        ✓ HIVE usa ~70% menos tokens                                         │
+│        ✓ HIVE é ~70% mais barato                                            │
+│        ✓ Mostra economia em percentual                                      │
+│                                                                              │
+│     DADOS ESPERADOS:                                                        │
+│     Tempo (s)      │ Tradicional: 15.2  │ HIVE: 7.1  │ Ganho: 53.1% ⚡     │
+│     Tokens         │ Tradicional: 6200  │ HIVE: 1850 │ Ganho: 70.2% 📉     │
+│     Custo (USD)    │ Tradicional: 0.062 │ HIVE: 0.019│ Ganho: 70.2% 💰     │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PASSO 5: VALIDAR LOGS (2 min) ───────────────────────────────────────────┐
+│                                                                              │
+│ [ ] Verificar logs criados                                                  │
+│       $ ls -lh logs/                                                        │
+│                                                                              │
+│     ✅ Validar:                                                             │
+│        ✓ Arquivo .jsonl criado recentemente                                 │
+│        ✓ Tamanho > 500 bytes                                                │
+│                                                                              │
+│ [ ] Inspecionar conteúdo do log                                             │
+│       $ head -5 logs/hive_session_*.jsonl                                   │
+│                                                                              │
+│     ✅ Validar:                                                             │
+│        ✓ JSON bem formatado                                                 │
+│        ✓ Contém "queen_decision"                                            │
+│        ✓ Contém "worker_complete" (4 linhas)                                │
+│        ✓ Contém "final_result"                                              │
+│        ✓ Tokens são números positivos                                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PASSO 6: OPCIONAL - TESTES UNITÁRIOS (2 min) ────────────────────────────┐
+│                                                                              │
+│ [ ] Instalar pytest                                                         │
+│       $ pip install pytest pytest-asyncio                                   │
+│                                                                              │
+│ [ ] Rodar testes                                                            │
+│       $ pytest tests/ -v                                                    │
+│                                                                              │
+│     ✅ Esperado:                                                            │
+│        ✓ test_rag_worker PASSED                                             │
+│        ✓ test_math_worker PASSED                                            │
+│        ✓ test_code_worker PASSED                                            │
+│        ✓ test_qa_worker PASSED                                              │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                       🎉 SE TUDO PASSOU - SUCESSO!                         ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+✅ O projeto está funcionando corretamente!
+
+Próximas ações para seu artigo:
+
+1. CAPTURAR DADOS
+   □ Screenshot de example_simple.py
+   □ Screenshot de benchmark.py
+   □ Extrair métricas dos logs
+
+2. ESCREVER ARTIGO
+   □ Usar template em BLOG_GUIDE.md
+   □ Incluir screenshots capturadas
+   □ Citar números reais do benchmark
+   □ Explicar arquitetura com diagrama
+
+3. PUBLICAR
+   □ Link para GitHub
+   □ Instruções de instalação
+   □ Exemplos funcionais
+   □ Métricas comprovadas
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                         📊 RESUMO ESPERADO                                 ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+TEMPO TOTAL DE VALIDAÇÃO: ~20-30 minutos
+
+├─ Setup + Instalação ............ 5 min
+├─ Teste Simples ................ 2-3 min
+├─ Teste Completo ............ 5-10 min
+├─ Benchmark .................. 3-5 min
+├─ Validar Logs ................... 2 min
+├─ Testes Unitários ............... 2 min (opcional)
+└─ TOTAL ..................... ~20-30 min
+
+RESULTADOS ESPERADOS:
+
+Tempo de Execução:
+  ✓ Example simples: 6-8s
+  ✓ Main (3 queries): 20-30s
+  ✓ Benchmark completo: 30-45s
+
+Performance:
+  ✓ HIVE ~50% mais rápido que tradicional
+  ✓ HIVE ~70% menos tokens
+  ✓ HIVE ~70% mais barato
+
+Qualidade:
+  ✓ Sem erros
+  ✓ Resultados coerentes
+  ✓ Logs estruturados
+  ✓ Métricas precisas
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                     🐛 SE ALGO DER ERRADO                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+❌ "ModuleNotFoundError: anthropic"
+   → pip install -r requirements.txt
+
+❌ "ANTHROPIC_API_KEY não configurada"
+   → export ANTHROPIC_API_KEY='sk-ant-xxxxx'
+
+❌ "401 Unauthorized"
+   → Verificar API key em https://console.anthropic.com/
+
+❌ "Timeout"
+   → Aumentar timeout em src/config.py de 30 para 60
+
+❌ "Rate limit exceeded"
+   → Esperar 30 segundos ou rodar novamente
+
+Para mais detalhes: veja EXECUTION_GUIDE.md
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                        📚 DOCUMENTAÇÃO                                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+README.md ................. Documentação técnica completa
+CLAUDE.md ................. Overview do projeto
+EXECUTION_GUIDE.md ....... Guia detalhado de execução (este arquivo)
+BLOG_GUIDE.md ............ Template para artigo no blog
+DEPLOYMENT.md ............ Deploy em produção
+QUICK_START.txt .......... Este arquivo (checklist visual)
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                      ✨ BOA SORTE COM SEU ARTIGO! ✨                       ║
+╚════════════════════════════════════════════════════════════════════════════╝

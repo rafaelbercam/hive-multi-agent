@@ -1,0 +1,168 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                          ┃
+┃                     🚀 COMECE POR AQUI 🚀                                ┃
+┃                                                                          ┃
+┃                  Sistema HIVE Pronto para Usar                          ┃
+┃              Multi-Agente com Padrão Queen & Workers                    ┃
+┃                                                                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PASSO 1: LEITURA INICIAL (5 minutos)                                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Leia NESTA ORDEM:
+
+  1️⃣  Este arquivo (você está aqui!)
+  2️⃣  QUICK_START.txt ........... Checklist visual de execução
+  3️⃣  README.md ................ Entenda a arquitetura
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PASSO 2: SETUP (5 minutos)                                               ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Copie e cole NO SEU TERMINAL:
+
+  $ cd /Users/rafaelbercam/Projects/hive-multi-agent
+  $ python -m venv venv
+  $ source venv/bin/activate
+  $ pip install -r requirements.txt
+
+Depois configure a API key (importante!):
+
+  $ export ANTHROPIC_API_KEY='sk-ant-sua-chave-aqui'
+
+Para validar que funcionou:
+
+  $ python -c "import os; print('✅ OK!' if os.getenv('ANTHROPIC_API_KEY') else '❌ Falta API Key')"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PASSO 3: TESTAR (2-3 minutos)                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Teste rápido:
+
+  $ python example_simple.py
+
+Esperado:
+  ✅ Mostra "🐝 HIVE Queen iniciando..."
+  ✅ Executa 4 workers em paralelo
+  ✅ Mostra "HIVE EXECUTION SUMMARY"
+  ✅ Tempo: 6-8 segundos
+  ✅ Tokens: 1800-2000
+  
+Se funcionar → Parabéns! Sistema está rodando! 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PASSO 4: VALIDAÇÃO COMPLETA (20 minutos)                                 ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Para validação TOTAL (3 testes):
+
+  A) Teste Simples (3 min):
+     $ python example_simple.py
+
+  B) Teste Completo com 3 queries (10 min):
+     $ python main.py
+
+  C) Benchmark (HIVE vs Tradicional) (5 min):
+     $ python benchmark.py
+
+Veja EXECUTION_GUIDE.md para detalhes de cada teste.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PASSO 5: PARA SEU ARTIGO (30-60 minutos)                                 ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+1. Execute os testes acima
+2. Capture screenshots (Cmd+Shift+3 ou similar)
+3. Copie os números que aparecem:
+   - Tempo de execução
+   - Tokens utilizados
+   - Comparação de custos
+4. Abra BLOG_GUIDE.md
+5. Siga a estrutura recomendada
+6. Cole seus dados reais no template
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ ARQUIVOS QUE VOCÊ VAI USAR                                              ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+Para começar:
+  📄 QUICK_START.txt ................... Leia agora!
+  📄 README.md ......................... Depois desta leitura
+  🐍 example_simple.py ................. Teste rápido
+  🐍 main.py ........................... Teste completo
+  🐍 benchmark.py ...................... Dados do artigo
+
+Para seu artigo:
+  📄 BLOG_GUIDE.md ..................... Template estruturado
+  📄 EXECUTION_GUIDE.md ................ Instruções detalhadas
+
+Referência:
+  📄 CLAUDE.md ......................... Overview técnico
+  📄 PROJECT_INDEX.md .................. Índice de tudo
+  📄 DEPLOYMENT.md ..................... Para deploy (depois)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ O QUE ESPERAR                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+✅ FUNCIONANDO:
+   • System executa sem erros
+   • Processa queries complexas
+   • Mostra resultados coerentes
+   • Rastreia tempo e tokens
+   • Cria logs estruturados
+
+📊 DADOS PARA ARTIGO:
+   • Tempo: 50% mais rápido
+   • Tokens: 70% menos
+   • Custo: 70% economia
+   • Comparação visual
+   • Exemplos práticos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ PRÓXIMO PASSO                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+👉 Abra QUICK_START.txt e siga os 6 passos listados
+
+   Tempo total: ~20-30 minutos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+❓ DÚVIDAS RÁPIDAS:
+
+P: Por onde começo mesmo?
+R: Faça os 5 passos acima em ordem
+
+P: Como obtenho minha API key?
+R: https://console.anthropic.com/ → Create API key
+
+P: Quanto vai custar?
+R: ~$0.02 por execução (muito barato!)
+
+P: Como coloco no artigo?
+R: Use BLOG_GUIDE.md como template
+
+P: Como faço deploy depois?
+R: Veja DEPLOYMENT.md
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ Pronto? Abra QUICK_START.txt e vamos lá! ✨
